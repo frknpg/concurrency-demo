@@ -14,7 +14,7 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public void upsert(@RequestBody CreateProductRequest createProductRequest) {
-        productService.upsert(createProductRequest);
+    public void save(@RequestBody CreateProductRequest createProductRequest) {
+        productService.save(createProductRequest);
     }
 }
