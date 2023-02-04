@@ -1,12 +1,35 @@
 spring:
+  profiles:
+    active: postgresql
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: postgresql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/concurrency
+    username: postgres
+    password: test123
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: h2
   datasource:
     url: jdbc:h2:mem:test-db
     username: sa
     driverClassName: org.h2.Driver
   jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-    defer-datasource-initialization: true
-    hibernate:
-      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
   h2:
     console.enabled: true
